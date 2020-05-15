@@ -26,6 +26,7 @@ dependencies:
   flutter_modular:
   mobx:
   flutter_mobx:
+  dio:
 
 dev_dependencies:
   build_runner:

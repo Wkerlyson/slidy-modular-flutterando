@@ -16,7 +16,7 @@ class _OtherPageState extends State<OtherPage> {
       appBar: AppBar(
         title: Text('Other'),
       ),
-      body: Center(child: Text(homeController.text)),
+      body: Center(child: Text('')),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'home_controller.dart';
@@ -15,25 +16,49 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: Text('Home'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Center(
-          child: TextField(
-            onChanged: (value) {
-              homeController.text = value;
+      body: Observer(
+        builder: (_) {
+          if (homeController.pokemons.error != null) {
+            return Center(
+              child: RaisedButton(
+                child: Text('Press to refresh'),
+                onPressed: homeController.fetchPokemons,
+              ),
+            );
+          }
+
+          if (homeController.pokemons.value == null) {
+            return Center(child: CircularProgressIndicator());
+          }
+
+          var list = homeController.pokemons.value;
+
+          return ListView.builder(
+            itemCount: list.length,
+            itemBuilder: (BuildContext context, int index) {
+              return ListTile(
+                title: Text(list[index].name),
+                leading: CircleAvatar(
+                  radius: 20,
+                  backgroundImage: NetworkImage(
+                      'https://robohash.org/andrea${list[index].name}'),
+                  backgroundColor: Colors.grey[300],
+                ),
+                subtitle: Text(list[index].url),
+              );
             },
-            decoration: InputDecoration(labelText: 'text here'),
-          ),
-        ),
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          //Navigator.pushNamed(context, '/other/${homeController.text}');
-          Modular.to.pushNamed('/other');
-        },
-        child: Icon(Icons.add),
+        elevation: 0,
+        onPressed: homeController.fetchPokemons,
+        //Navigator.pushNamed(context, '/other/${homeController.text}');
+        //Modular.to.pushNamed('/other');
+        child: Icon(Icons.refresh),
       ),
     );
   }
