@@ -5,11 +5,11 @@ class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      navigatorKey: Modular.navigatorKey,
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      navigatorKey: Modular.navigatorKey,
+      title: 'Pokemon',
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
+        primarySwatch: Colors.blue,
       ),
       initialRoute: '/',
       onGenerateRoute: Modular.generateRoute,
