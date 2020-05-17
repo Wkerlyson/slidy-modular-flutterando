@@ -24,6 +24,20 @@ mixin _$HomeController on _HomeControllerBase, Store {
     });
   }
 
+  final _$_HomeControllerBaseActionController =
+      ActionController(name: '_HomeControllerBase');
+
+  @override
+  dynamic fetchPokemons() {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
+        name: '_HomeControllerBase.fetchPokemons');
+    try {
+      return super.fetchPokemons();
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''

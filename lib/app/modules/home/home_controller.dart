@@ -1,6 +1,7 @@
 import 'package:mobx/mobx.dart';
-import 'package:slidy_modular_flutterando/app/shared/models/pokemon_model.dart';
-import 'package:slidy_modular_flutterando/app/shared/repositories/poke_repository.dart';
+import 'package:slidy_modular_flutterando/app/modules/home/repositories/poke_repository.dart';
+
+import 'models/pokemon_model.dart';
 part 'home_controller.g.dart';
 
 class HomeController = _HomeControllerBase with _$HomeController;
